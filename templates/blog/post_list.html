@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+   
+{% block content %}
+<h1 class="bg-warning text-center"> blog</h1>
+
+
+<div class="container">
+    <div class="row">
+        {% for post in object_list %}
+        <div class="col-4">
+            <div class="card m-2" style="width: 18rem;"><a href="{{ post.get_absolute_url }}">
+                    <img class="card-img-top" src="{{post.thumbnail.url}}">
+                    <div class="card-body">
+                        <h5 class="card-title">{{post.title}}</h5></a>
+                        author : {{post.author}}
+                        <p>{{post.content}}</p>
+
+
+                <a href="{% url 'update' post.slug %}"> Update </a>
+                <a href="{% url 'delete' post.slug %}"> delete </a>
+                </div>
+
+
+        </div>
+
+    </div>
+    {% endfor %}
+
+</div>
+</div>
+
+
+
+<br/>
+<a href="{%url 'create' %}">create</a>
+
+
+{% endblock content %}
